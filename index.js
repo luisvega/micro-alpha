@@ -26,7 +26,7 @@ router.get('/zeta', (req, res, next) => {
 })
 
 router.get('/data', (req, res, next) => {
-  fetch('http://localhost:4000/secrets')
+  fetch('http://' + known_zeta_instances[Math.floor(Math.random()*known_zeta_instances.length)] + '/secrets')
   .then(response => response.json())
   .then(body => res.status(200).json(body))
   .catch(e => res.status(500).json({error: e}))
