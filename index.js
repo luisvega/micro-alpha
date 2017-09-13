@@ -4,6 +4,8 @@ const fetch = require('node-fetch')
 const app = express()
 const router = express.Router()
 const logger = require('morgan')
+const pkg = require('./package.json')
+
 const consul = require('consul')({ host: process.env.CONSUL || '172.31.7.114'})
 
 let known_zeta_instances = []
@@ -16,7 +18,8 @@ router.get('/', (req, res, next) => {
   res.status(200).json({ data: {
     message: {
       title: 'start',
-      role: 'alpha'
+      role: 'alpha',
+      version: pkg.version
     }
   }})
 })
